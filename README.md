@@ -117,4 +117,5 @@ pytest tests/ -v
 ### Автозапуск тестов на GitHub 
 
 Workflow лежит в [.github/workflows/tests.yml](.github/workflows/tests.yml) 
+Главное при первом запуске в respository secrets в переменную HF_TOKEN добавить свой токен, предварительно получив доступ к модельке для 1 задания
 
