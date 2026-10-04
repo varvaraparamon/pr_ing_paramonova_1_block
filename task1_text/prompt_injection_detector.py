@@ -4,7 +4,7 @@ import sys
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
-sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]  # кириллица в консоли Windows
+sys.stdout.reconfigure(encoding="utf-8")  
 
 MODEL_NAME = "rogue-security/prompt-injection-jailbreak-sentinel-v2"
 
