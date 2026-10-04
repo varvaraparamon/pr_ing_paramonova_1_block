@@ -1,0 +1,8 @@
+torch>=2.2
+torchvision>=0.17
+transformers>=4.51
+soundfile>=0.12
+mediapipe>=0.10.14,<1.0  
+numpy>=1.26
+ruff>=0.6
+mypy>=1.10
