@@ -4,7 +4,7 @@ import sys
 import torch
 from transformers import AutoModelForSequenceClassification, AutoTokenizer, pipeline
 
-sys.stdout.reconfigure(encoding="utf-8")  
+sys.stdout.reconfigure(encoding="utf-8")  # type: ignore[union-attr]
 
 MODEL_NAME = "rogue-security/prompt-injection-jailbreak-sentinel-v2"
 
@@ -37,7 +37,7 @@ def main():
         description="Детектор prompt-injection / jailbreak атак"
     )
     parser.add_argument("text", nargs="?", help="текст запроса для проверки")
-    parser.add_argument("--file", help="путь к .txt файлу: одна строка = один запрос")
+    parser.add_argument("--file", help="путь к .txt файлу")
     args = parser.parse_args()
 
     if args.file:
