@@ -14,8 +14,8 @@ pip install -r requirements.txt
 **Фреймвроки:**
 | Задача | Фреймворк | Модель |
 |---|---|---|
-| 1. Текст | Hugging Face Transformers | `rogue-security/prompt-injection-jailbreak-sentinel-v2` |
-| 2. Аудио | Hugging Face Transformers | `openai/whisper-tiny` |
+| 1. Текст | Hugging Face Transformers | rogue-security/prompt-injection-jailbreak-sentinel-v2 |
+| 2. Аудио | Hugging Face Transformers | openai/whisper-tiny |
 | 3. Изображения | PyTorch / torchvision | ResNet-18 (ImageNet) |
 | 4. Видео | MediaPipe + OpenCV | MediaPipe Hands |  
 
@@ -23,7 +23,7 @@ pip install -r requirements.txt
 
 ### Задача 1. Детекция prompt-injection / jailbreak атак (текст)
 
-**ТЗ.** Разработать инструмент LLM-приложений: на вход подается текст запроса, который пользвоатель хочет отдать в llm, а выход - это вердикт `benign` / `jailbreak`
+**ТЗ.** Разработать инструмент LLM-приложений: на вход подается текст запроса, который пользвоатель хочет отдать в llm, а выход - это вердикт benign / jailbreak
 с оценкой уверенности. При обнаружении атаки программа завершается с кодом 1
 
 **Модель:** [rogue-security/prompt-injection-jailbreak-sentinel-v2](https://huggingface.co/rogue-security/prompt-injection-jailbreak-sentinel-v2) 
@@ -118,4 +118,27 @@ pytest tests/ -v
 
 Workflow лежит в [.github/workflows/tests.yml](.github/workflows/tests.yml) 
 Главное при первом запуске в respository secrets в переменную HF_TOKEN добавить свой токен, предварительно получив доступ к модельке для 1 задания
+
+## Часть 3 (RecSys)
+
+PS: Это задание пересекается с проектом из школы 21, который я делала на этой неделе, поэтому задание решила сформулировать на основе него.  
+
+Рекомендательная система для музыкального сервиса на Million Song Dataset
+(код в part3_recsys/). Реализовано:
+
+- User-Based CF и Item-Based CF (косинусная близость на sparse-матрицах)
+- Content-based по текстам песен (baseline / word2vec / логистическая регрессия)
+- Hybrid: user-CF плюс популярность, с фолбэком на популярное при cold start
+- Эвристики: топ популярных, топ по жанру
+
+```bash
+cd part3_recsys
+python main.py top --n 20
+python main.py user <USER_ID>
+python main.py hybrid <USER_ID> --w 0.7
+python main.py evaluate --users 300 --tracks 300
+```
+
+Датасеты в репозиторий не входят, ожидаются в part3_recsys/datasets/.  
+Можно скачать по ссылке [http://millionsongdataset.com/](http://millionsongdataset.com/)
 
